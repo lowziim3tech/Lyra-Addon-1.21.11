@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "lyradebug",
+  "version": "1.0.0",
+  "name": "LyraDebug",
+  "description": "Useful for SMP Servers",
+  "authors": [ "8iq" ],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "meteor": [ "com.lyradebug.LyraDebug" ]
+  },
+  "mixins": [
+    "lyradebug.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.5",
+    "fabric-api": "*",
+    "minecraft": "~1.21.1",
+    "meteor-client": "*"
+  }
+}

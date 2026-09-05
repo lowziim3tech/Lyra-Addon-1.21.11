@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "com.lyradebug.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "refmap": "lyradebug-refmap.json",
+  "mixins": [
+    "BootstrapA",
+    "RenderPatchA",
+    "WorldPatchB",
+    "EntityPatchC",
+    "EntityPatchD"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
