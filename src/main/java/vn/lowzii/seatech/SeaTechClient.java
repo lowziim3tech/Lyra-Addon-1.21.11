@@ -1,4 +1,4 @@
-package vn.lowzii.metech;
+package vn.lowzii.seatech;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -15,8 +15,8 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import org.lwjgl.glfw.GLFW;
 
-public final class MeTechClient implements ClientModInitializer {
-    public static final MeTechClient INSTANCE = new MeTechClient();
+public final class SeaTechClient implements ClientModInitializer {
+    public static final SeaTechClient INSTANCE = new SeaTechClient();
     private final Interval camera = new Interval(120_000_000_000L);
     private final Interval attack = new Interval(500_000_000L);
     private KeyBinding guiKey;
@@ -30,9 +30,9 @@ public final class MeTechClient implements ClientModInitializer {
         INSTANCE.initialize();
     }
     private void initialize() {
-        var category = KeyBinding.Category.create(Identifier.of("metech_auto_sell", "main"));
-        guiKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.metech_auto_sell.gui", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_H, category));
-        chopKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.metech_auto_sell.toggle", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_V, category));
+        var category = KeyBinding.Category.create(Identifier.of("seatech_auto_sell", "main"));
+        guiKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.seatech_auto_sell.gui", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_H, category));
+        chopKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.seatech_auto_sell.toggle", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_V, category));
         ClientTickEvents.END_CLIENT_TICK.register(this::tick);
     }
     public boolean enabled() { return enabled; }
@@ -54,14 +54,14 @@ public final class MeTechClient implements ClientModInitializer {
             if (client.interactionManager != null) client.interactionManager.cancelBlockBreaking();
             status = "OFF";
         }
-        if (client.player != null) client.player.sendMessage(Text.literal("MeTech Auto Chop: " + status), true);
+        if (client.player != null) client.player.sendMessage(Text.literal("SeaTech Auto Chop: " + status), true);
     }
     private void tick(MinecraftClient client) {
         while (chopKey.wasPressed()) {
             if (client.currentScreen == null) toggle();
         }
         while (guiKey.wasPressed()) {
-            if (client.currentScreen == null && client.player != null) client.setScreen(new MeTechScreen());
+            if (client.currentScreen == null && client.player != null) client.setScreen(new SeaTechScreen());
         }
         if (!enabled) return;
         if (client.player == null || client.world == null || !client.player.isAlive()) {

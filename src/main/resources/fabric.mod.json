@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "id": "metech_auto_sell",
+  "id": "seatech_auto_sell",
   "version": "${version}",
-  "name": "MeTech Auto Sell",
+  "name": "SeaTech Auto Sell",
   "description": "Client-side axe clicking and two-minute upward camera correction.",
   "authors": ["Lowzii"],
   "environment": "client",
-  "entrypoints": {"client": ["vn.lowzii.metech.MeTechClient"]},
+  "entrypoints": {"client": ["vn.lowzii.seatech.SeaTechClient"]},
   "depends": {"fabricloader": ">=0.18.1", "minecraft": "1.21.11", "java": ">=21", "fabric-api": "*"}
 }

@@ -1,4 +1,4 @@
-package vn.lowzii.metech;
+package vn.lowzii.seatech;
 
 /** Monotonic time; no burst of queued attacks after a stall. */
 public final class Interval {
