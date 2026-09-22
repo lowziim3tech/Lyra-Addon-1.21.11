@@ -1,22 +1,11 @@
 {
   "schemaVersion": 1,
-  "id": "lyradebug",
-  "version": "1.0.0",
-  "name": "LyraDebug",
-  "description": "Useful for SMP Servers",
-  "authors": [ "8iq" ],
-  "license": "MIT",
+  "id": "metech_auto_sell",
+  "version": "${version}",
+  "name": "MeTech Auto Sell",
+  "description": "Client-side axe clicking and two-minute upward camera correction.",
+  "authors": ["Lowzii"],
   "environment": "client",
-  "entrypoints": {
-    "meteor": [ "com.lyradebug.LyraDebug" ]
-  },
-  "mixins": [
-    "lyradebug.mixins.json"
-  ],
-  "depends": {
-    "fabricloader": ">=0.16.5",
-    "fabric-api": "*",
-    "minecraft": "~1.21.1",
-    "meteor-client": "*"
-  }
+  "entrypoints": {"client": ["vn.lowzii.metech.MeTechClient"]},
+  "depends": {"fabricloader": ">=0.18.1", "minecraft": "1.21.11", "java": ">=21", "fabric-api": "*"}
 }

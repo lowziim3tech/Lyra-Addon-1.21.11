@@ -1,58 +1,14 @@
-plugins {
-    id "fabric-loom" version "1.14.10"
-}
-
-version = project.mod_version
-group = project.maven_group
-
-base {
-    archivesName = project.archives_base_name
-}
-
-repositories {
-    mavenCentral()
-    maven {
-        name = "MeteorReleases"
-        url = "https://maven.meteordev.org/releases"
-    }
-    maven {
-        name = "MeteorSnapshots"
-        url = "https://maven.meteordev.org/snapshots"
-    }
-}
-
+plugins { id 'net.fabricmc.fabric-loom-remap' version '1.14.10' }
+version = '1.0.0'
+group = 'vn.lowzii'
+base { archivesName = 'metech-auto-sell' }
+repositories { mavenCentral() }
 dependencies {
-    minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings "net.fabricmc:intermediary:${project.minecraft_version}:v2"
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
-    modImplementation "meteordevelopment:meteor-client:${project.meteor_version}"
+    minecraft 'com.mojang:minecraft:1.21.11'
+    mappings 'net.fabricmc:yarn:1.21.11+build.4:v2'
+    modImplementation 'net.fabricmc:fabric-loader:0.18.1'
+    modImplementation 'net.fabricmc.fabric-api:fabric-api:0.141.1+1.21.11'
 }
-
-loom {
-    mixin {
-        defaultRefmapName = "lyradebug-refmap.json"
-    }
-}
-
-tasks.withType(JavaCompile).configureEach {
-    options.release = 21
-    options.encoding = "UTF-8"
-    options.compilerArgs.addAll(["-Xlint:deprecation", "-Xlint:unchecked"])
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
-    withSourcesJar()
-}
-
-jar {
-    manifest {
-        attributes(
-            "Fabric-Jar-Type": "classes",
-            "Fabric-Loom-Mixin-Remap-Type": "static",
-            "Fabric-Mapping-Namespace": "intermediary"
-        )
-    }
-}
+java { toolchain.languageVersion = JavaLanguageVersion.of(21); withSourcesJar() }
+tasks.withType(JavaCompile).configureEach { options.release = 21; options.encoding = 'UTF-8' }
+processResources { inputs.property 'version', project.version; filesMatching('fabric.mod.json') { expand version: project.version } }
